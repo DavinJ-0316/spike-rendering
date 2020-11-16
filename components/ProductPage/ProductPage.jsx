@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
 import styled from '@emotion/styled';
+import React from 'react';
+import accounting from 'accounting';
 
 const Page = styled.div`
   min-height: 100vh;
@@ -82,51 +83,27 @@ const CallToAction = styled.button`
   font-size: 1rem;
 `;
 
-const images = [{
-  key: 'dd5e8ec0',
-  src: 'https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/1ed13ff2-466e-43be-84b6-9ad8c2f8cce3/air-max-zm950-older-shoe-fhbCg2.jpg',
-  alt: 'Nike',
-}, {
-  key: 'ed24262c',
-  src: 'https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5,q_80/609be217-d358-4b45-9b00-a21b1ceef6e6/air-max-zm950-older-shoe-fhbCg2.jpg',
-  alt: 'Nike',
-}, {
-  key: '707fc4b5',
-  src: 'https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5,q_80/4a41bc3b-06e2-4ebd-9613-f99c89651389/air-max-zm950-older-shoe-fhbCg2.jpg',
-  alt: 'Nike',
-}, {
-  key: 'ee5d41d0',
-  src: 'https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5,q_80/7be5337f-875a-47d4-b387-e41057c9d448/air-max-zm950-older-shoe-fhbCg2.jpg',
-  alt: 'Nike',
-}, {
-  key: 'aa67a11e',
-  src: 'https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5,q_80/06725e1e-0098-4f33-9c0c-afa8649ebf71/air-max-zm950-older-shoe-fhbCg2.jpg',
-  alt: 'Nike',
-}]
-
-const ProductPage = () => (
+const ProductPage = ({
+  name,
+  price,
+  tagline,
+  description,
+  images,
+  colors,
+}) => (
   <Page>
     <Product>
       <Image src={images[0].src} alt={images[0].alt} />
       <div>
         <Header>
-          <Name>NIKE SHOES</Name>
-          <Price>$123.00</Price>
+          <Name>{name}</Name>
+          <Price>{accounting.formatMoney(price)}</Price>
         </Header>
         <Colors>
-          <Color value="red" />
-          <Color value="green" />
-          <Color value="red" />
-          <Color value="white" />
+          {colors.map((c) => (<Color key={c} value={c} />))}
         </Colors>
-        <Tagline>Ut aliquam aspernatur asperiores similique sit totam eos.</Tagline>
-        <Description>
-          Deleniti qui reprehenderit quo corporis aliquam sint culpa ipsum.
-          Ut autem recusandae est voluptatem rem libero cumque perferendis praesentium.
-          Est iure quisquam eos sed et dolorum consequatur accusamus.
-          Laborum est qui facilis commodi occaecati doloribus.
-          Voluptatibus quibusdam nihil corrupti voluptate placeat ea quo.
-        </Description>
+        <Tagline>{tagline}</Tagline>
+        <Description>{description}</Description>
         <Thumbnails>
           {images.map((i) => (<Thumbnail key={i.key} src={i.src} alt={i.alt} />))}
         </Thumbnails>
