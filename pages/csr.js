@@ -16,7 +16,7 @@ const CSR = () => {
   const [state, dispatch] = useReducer(reducer, { loading: true });
 
   useEffect(() => {
-    getProduct()
+    getProduct()()
       .then((data) => dispatch({
         type: 'GET_DATA_SUCCESSFUL',
         data,

@@ -1,5 +1,5 @@
 export { default } from '../components/ProductPage';
-import getProduct from '../apis/getProduct';
+import getProduct from '../services/getProduct';
 
 export async function getStaticProps() {
   const data = await getProduct();
