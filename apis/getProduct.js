@@ -1,12 +1,12 @@
 import axios from 'axios';
 
-const { PORT = 3000 } = process.env;
 const API_PATH = '/api';
 
 const getInstance = (ctx = {}) => {
   const { req } = ctx;
+  console.log();
 
-  const baseURL = req ? `http://localhost:${PORT}${API_PATH}` : API_PATH;
+  const baseURL = req ? `http://${req.headers.host}${API_PATH}` : API_PATH;
   const instance = axios.create({ baseURL });
 
   return instance;
