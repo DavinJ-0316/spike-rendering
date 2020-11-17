@@ -13,12 +13,12 @@ const decode = (str) => {
 const getProduct = () => {
   console.log('HI YOU ARE REQUESTING API, WHERE ARE YOU?');
 
-  return octokit
-    .request('GET /repos/{owner}/{repo}/contents/{path}', {
+  return new Promise((resolve) => setTimeout(resolve, 3000))
+    .then(() => octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
       owner: 'KieraDOG',
       repo: 'spike-rendering-content',
       path: 'product.json'
-    })
+    }))
     .then(({ data }) => data.content)
     .then((content) => decode(content))
     .then((decoded) => JSON.parse(decoded));
